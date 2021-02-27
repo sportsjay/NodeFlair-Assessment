@@ -1,25 +1,22 @@
 import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core";
 
 function PageContainer(props) {
+  const classes = useStyles();
   const [hover, setHover] = useState(false);
   const image = props.image;
   const page_title = props.page_title;
   return (
     <div
+      className={classes.image_container}
       style={
         hover
           ? {
-              borderRadius: 10,
-              width: "30%",
-              minWidth: 200,
               transition: "0.3s",
               transform: "translate(0px, -1px)",
               boxShadow: "0px 2px 4px 0px #525252",
             }
           : {
-              borderRadius: 10,
-              width: "30%",
-              minWidth: 200,
               transition: "0.3s",
               transform: "translate(0px, 1px)",
               boxShadow: "0px 0px",
@@ -28,28 +25,27 @@ function PageContainer(props) {
       onMouseEnter={() => setHover(!hover)}
       onMouseLeave={() => setHover(!hover)}
     >
-      <div style={styles.image_container}>
-        {image.length > 0 ? (
-          <img src={image} style={styles.image} alt="Task"></img>
-        ) : (
-          <h2 style={styles.image}>Coming Soon!</h2>
-        )}
-        <span style={styles.page_title}>Page: {page_title}</span>
-      </div>
+      {image.length > 0 ? (
+        <img src={image} className={classes.image} alt="Task"></img>
+      ) : (
+        <h2 className={classes.image}>Coming Soon!</h2>
+      )}
+      <span className={classes.page_title}>Page: {page_title}</span>
     </div>
   );
 }
 
 export default function HomePage() {
+  const classes = useStyles();
   return (
-    <div style={styles.root}>
-      <div style={styles.body}>
+    <div className={classes.root}>
+      <div className={classes.body}>
         <h2>Welcome to Jason Nathaniel's Task Solutions Application</h2>
         <p>
           This application provides the 3 solutions, each on their respective
           routes
         </p>
-        <div style={styles.page_list}>
+        <div className={classes.page_list}>
           <PageContainer
             image="/assets/home_page/Task1.PNG"
             page_title="Task 1"
@@ -65,9 +61,9 @@ export default function HomePage() {
   );
 }
 
-const styles = {
+const useStyles = makeStyles((theme) => ({
   root: {
-    height: "90vh",
+    minHeight: "90vh",
     width: "100vw",
     display: "flex",
     flexDirection: "column",
@@ -77,7 +73,7 @@ const styles = {
   body: {
     boxSizing: "border-box",
     width: "80%",
-    height: "80%",
+    minHeight: "80%",
     backgroundColor: "white",
     padding: 20,
     borderRadius: 10,
@@ -95,13 +91,20 @@ const styles = {
     paddingTop: 20,
     paddingLeft: 10,
     paddingRight: 10,
+    marginTop: 10,
     color: "#575757",
     backgroundColor: "#d9d9d9",
     borderRadius: 10,
+    width: "30%",
+    minWidth: 200,
+    [theme.breakpoints.down("sm")]: {
+      width: "60%",
+    },
   },
   page_list: {
     display: "flex",
     justifyContent: "space-evenly",
+    flexWrap: "wrap",
   },
   page_title: {
     marginTop: 40,
@@ -115,4 +118,4 @@ const styles = {
     paddingBottom: 10,
     paddingLeft: 20,
   },
-};
+}));
