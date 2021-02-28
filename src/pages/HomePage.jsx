@@ -54,7 +54,10 @@ export default function HomePage() {
             image="/assets/home_page/Task2.PNG"
             page_title="Task 2"
           />
-          <PageContainer image="" page_title="Task 3" />
+          <PageContainer
+            image="/assets/home_page/Task3.PNG"
+            page_title="Task 3"
+          />
         </div>
       </div>
     </div>
@@ -81,8 +84,8 @@ const useStyles = makeStyles((theme) => ({
   image: {
     margin: 0,
     borderRadius: 10,
-    minWidth: "auto",
-    height: 130,
+    width: "100%",
+    height: "auto",
   },
   image_container: {
     display: "flex",
