@@ -9,6 +9,7 @@ import {
 
 import HomePage from "./pages/HomePage";
 import TaskOne from "./pages/TaskOne";
+import TaskThree from "./pages/TaskThree";
 import TaskTwo from "./pages/TaskTwo";
 
 function StyledLink(props) {
@@ -73,6 +74,16 @@ export default function App() {
             >
               Task 2
             </Link>
+            <Link
+              to="/task-3"
+              onClick={() => setNavLocation("Task 3")}
+              style={{
+                ...styles.nav.link,
+                color: navLocation === "Task 3" ? "#575c75" : "black",
+              }}
+            >
+              Task 3
+            </Link>
           </span>
         </nav>
       )}
@@ -86,6 +97,7 @@ export default function App() {
         <Route path="/" exact component={() => <HomePage />} />
         <Route path="/task-1" exact component={() => <TaskOne />} />
         <Route path="/task-2" exact component={() => <TaskTwo />} />
+        <Route path="/task-3" exact component={() => <TaskThree />} />
         <Route render={() => <Redirect to="/" />} />
       </Switch>
     </Router>
